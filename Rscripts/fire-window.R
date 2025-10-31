@@ -40,6 +40,10 @@ parser$add_argument("-c", "--color",
     type = "character", default = "darkred",
     help = "Color for the ribbon plot [default: %(default)s]"
 )
+parser$add_argument("-b", "--highlight-bed",
+    type = "character", default = NULL,
+    help = "Optional BED file with regions to highlight (chrom, start, end)"
+)
 
 args <- parser$parse_args()
 
@@ -49,6 +53,7 @@ Width <- args$width
 Manifest <- args$BED
 Output <- args$output
 Color <- args$color
+Highlight_bed <- args$highlight_bed
 
 manifest_df <- fread(Manifest) %>%
     mutate(
@@ -118,6 +123,43 @@ center_pileups <- all_pileups %>%
         region_end = region_end - region_center,
     )
 
+# read and process highlight regions if provided
+highlight_regions <- NULL
+if (!is.null(Highlight_bed)) {
+    highlight_regions <- fread(Highlight_bed) %>%
+        setNames(c("chrom", "start", "end")) %>%
+        merge(
+            manifest_df %>%
+                select(chrom, region, region_length, strand,
+                       region_start, region_end, region_center),
+            by = "chrom",
+            allow.cartesian = TRUE
+        ) %>%
+        # filter to only highlights that overlap the region
+        filter(
+            start < region_end & end > region_start
+        ) %>%
+        mutate(
+            # clip to region boundaries
+            start = pmax(start, region_start),
+            end = pmin(end, region_end),
+            # apply strand correction
+            temp_start = start,
+            temp_end = end,
+            start = ifelse(strand == "+", temp_start,
+                          region_length - temp_end),
+            end = ifelse(strand == "+", temp_end,
+                        region_length - temp_start),
+            # center around region_center
+            start = start - region_center,
+            end = end - region_center
+        ) %>%
+        select(region, start, end) %>%
+        mutate(
+            region = factor(region, levels = levels(center_pileups$region))
+        )
+}
+
 # make a plot of the actuation faceting on the region
 center_pileups %>%
     # to plot this correctly I need to copy each row twice
@@ -138,6 +180,18 @@ center_pileups %>%
         # alpha=0.2
         fill = Color,
     ) +
+    # add highlighted regions if provided
+    {
+        if (!is.null(highlight_regions)) {
+            geom_rect(
+                data = highlight_regions,
+                aes(xmin = start, xmax = end, ymin = 0, ymax = 1),
+                fill = "orange",
+                alpha = 0.3,
+                inherit.aes = FALSE
+            )
+        }
+    } +
     facet_wrap(region ~ ., ncol = 1) +
     # draw a vertical line at the centering point
     geom_vline(

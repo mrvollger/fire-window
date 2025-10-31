@@ -40,11 +40,20 @@ fire-window manifest.bed -o output.pdf [options]
 - `-t, --height-per-track` - Height per track in inches (default: 1)
 - `-w, --width` - Figure width in inches (default: 8)
 - `-c, --color` - Color for the ribbon plot (default: darkred)
+- `-b, --highlight-bed` - Optional BED file with regions to highlight (3-column: chrom, start, end)
 
 ### Example
 
+Basic usage:
+
 ```bash
 fire-window regions.bed -o actuation_plot.pdf -t 1.5 -w 10 -c "#8B0000"
+```
+
+With highlighted regions:
+
+```bash
+fire-window regions.bed -o actuation_plot.pdf -b highlights.bed -c "#8B0000"
 ```
 
 ## Output
@@ -52,6 +61,7 @@ fire-window regions.bed -o actuation_plot.pdf -t 1.5 -w 10 -c "#8B0000"
 The tool generates a PDF with:
 
 - FIRE actuation levels (0-100%) shown as colored ribbon plots
+- Optional highlighted regions shown as semi-transparent orange rectangles
 - Vertical dashed line marking the alignment center
 - Horizontal blue line indicating the region boundaries
 - Separate facets for each region in the manifest
