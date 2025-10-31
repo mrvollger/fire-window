@@ -1,11 +1,14 @@
-[project]
+[workspace]
 authors = ["Mitchell R. Vollger <mvollger@gmai.com>"]
 channels = ["conda-forge", "bioconda"]
 description = "Add a short description here"
-name = "fire-figures"
-platforms = ["linux-64"]
+name = "fire-window"
+platforms = ["linux-64", "osx-64"]
 version = "0.1.0"
 
+[tasks]
+fire-window = { cmd = "Rscript Rscripts/fire-window.R" }
+format = { cmd = "Rscript -e 'styler::style_dir(\"Rscripts\")'" }
 
 [dependencies]
 r-base = ">=4.1"
@@ -36,3 +39,4 @@ bedtools = "*"
 r-reticulate = ">=1.38.0,<2"
 r-ggbeeswarm = ">=0.7.2,<0.8"
 r-hexbin = ">=1.28.5,<2"
+r-styler = "*"

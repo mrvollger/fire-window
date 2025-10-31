@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Wrapper script to run fire-window from anywhere using pixi
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Go up one level to project root and run with pixi
+cd "$SCRIPT_DIR/.." && pixi run fire-window "$@"
