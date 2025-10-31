@@ -44,6 +44,10 @@ parser$add_argument("-b", "--highlight-bed",
     type = "character", default = NULL,
     help = "Optional BED file with regions to highlight (chrom, start, end)"
 )
+parser$add_argument("--highlight-color",
+    type = "character", default = "darkorange",
+    help = "Color for highlighted regions [default: %(default)s]"
+)
 
 args <- parser$parse_args()
 
@@ -54,6 +58,7 @@ Manifest <- args$BED
 Output <- args$output
 Color <- args$color
 Highlight_bed <- args$highlight_bed
+Highlight_color <- args$highlight_color
 
 manifest_df <- fread(Manifest) %>%
     mutate(
@@ -186,7 +191,7 @@ center_pileups %>%
             geom_rect(
                 data = highlight_regions,
                 aes(xmin = start, xmax = end, ymin = 0, ymax = 1),
-                fill = "orange",
+                fill = Highlight_color,
                 alpha = 0.3,
                 inherit.aes = FALSE
             )

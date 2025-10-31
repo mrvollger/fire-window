@@ -41,6 +41,7 @@ fire-window manifest.bed -o output.pdf [options]
 - `-w, --width` - Figure width in inches (default: 8)
 - `-c, --color` - Color for the ribbon plot (default: darkred)
 - `-b, --highlight-bed` - Optional BED file with regions to highlight (3-column: chrom, start, end)
+- `--highlight-color` - Color for highlighted regions (default: darkorange)
 
 ### Example
 
