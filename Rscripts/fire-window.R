@@ -126,7 +126,7 @@ center_pileups <- all_pileups %>%
 # read and process highlight regions if provided
 highlight_regions <- NULL
 if (!is.null(Highlight_bed)) {
-    highlight_regions <- fread(Highlight_bed) %>%
+    highlight_regions <- fread(Highlight_bed, select = 1:3) %>%
         setNames(c("chrom", "start", "end")) %>%
         merge(
             manifest_df %>%
