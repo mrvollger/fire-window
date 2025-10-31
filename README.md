@@ -1,7 +1,7 @@
 # fire-window
 
 Generate actuation plots from fibertools pileup files with strand-aware coordinate handling.
-<img width="1916" height="950" alt="image" src="https://github.com/user-attachments/assets/928bc035-3494-4e50-bf81-e8a7cf5d1c01" />
+<img width="1520" height="756" alt="image" src="https://github.com/user-attachments/assets/00429a88-dc40-4187-89b7-2645d00bf8ae" />
 
 ## Description
 
