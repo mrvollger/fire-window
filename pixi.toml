@@ -1,0 +1,71 @@
+[project]
+authors = ["Mitchell R. Vollger <mvollger@gmai.com>"]
+channels = ["conda-forge", "bioconda"]
+description = "Add a short description here"
+name = "fire-figures"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+ginfo = { cmd = "R -e 'BiocManager::install(\"GenomeInfoDb\")'" }
+hg38 = { cmd = "R -e 'BiocManager::install(\"BSgenome.Hsapiens.UCSC.hg38\")'", depends-on = "ginfo" }
+txdb = { cmd = "R -e 'BiocManager::install(c(\"TxDb.Hsapiens.UCSC.hg19.knownGene\", \"TxDb.Hsapiens.UCSC.hg38.knownGene\"))'", depends-on = "hg38" }
+godb = { cmd = "R -e 'BiocManager::install(c(\"GO.db\", \"HDO.db\"))'", depends-on = "txdb" }
+setup = { depends-on = ["godb"] }
+
+
+[dependencies]
+r-base = ">=4.1"
+bioconductor-karyoploter = "1.28.0"
+bioconductor-genomicranges = "*"
+#bioconductor-helloranges = "*"
+bioconductor-chipseeker = { channel = "bioconda" }
+r-tidyverse = { version = ">=2.0", channel = "conda-forge" }
+r-rcolorbrewer = { channel = "conda-forge" }
+r-scales = { channel = "conda-forge" }
+"r-data.table" = "*"
+r-ggrepel = "*"
+r-cowplot = "*"
+r-argparse = "*"
+r-glue = "*"
+r-ggnewscale = "*"
+r-valr = "*"
+r-ggforce = "*"
+r-xlsx = { channel = "conda-forge" }
+"r-r.utils" = { channel = "conda-forge" }
+r-splitstackshape = "*"
+r-sodium = "*"
+r-tidylog = "*"
+r-ggpubr = "*"
+r-openxlsx = "*"
+r-circlize = "*"
+r-ggextra = "*"
+r-ggridges = "*"
+r-ggside = "*"
+r-ggh4x = "*"
+r-zoo = "*"
+radian = "*"
+r-languageserver = "*"
+htslib = "*"
+ca-certificates = "*"
+openssl = "*"
+open-fonts = "*"
+bcftools = "*"
+samtools = ">=1.15"
+bedops = "*"
+datamash = "*"
+bedtools = "*"
+imagemagick = "*"
+r-reticulate = ">=1.38.0,<2"
+r-ggbeeswarm = ">=0.7.2,<0.8"
+r-weights = ">=1.0.4,<2"
+bioconductor-genomeinfodb = ">=1.34.9,<2"
+bioconductor-genomeinfodbdata = ">=1.2.9,<2"
+r-pals = ">=1.9,<2"
+r-biocmanager = "*"
+"bioconductor-bsgenome.hsapiens.ucsc.hg38" = ">=1.4.5,<2"
+r-hexbin = ">=1.28.5,<2"
+"bioconductor-txdb.hsapiens.ucsc.hg19.knowngene" = ">=3.2.2,<4"
+"bioconductor-go.db" = ">=3.18.0,<4"
+r-runner = { version = ">=0.4.4,<0.5", channel = "conda-forge" }
+r-lsa = { version = ">=0.73.3,<0.74", channel = "conda-forge" }
