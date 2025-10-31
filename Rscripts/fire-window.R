@@ -65,7 +65,7 @@ manifest_df <- fread(Manifest)
 if (!"strand" %in% colnames(manifest_df)) {
     manifest_df$strand <- "+"
 }
-if (!center %in% colnames(manifest_df)) {
+if (!"center" %in% colnames(manifest_df)) {
     manifest_df$center <- (manifest_df$start + manifest_df$end) / 2
 }
 manifest_df <- manifest_df %>%
