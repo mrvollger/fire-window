@@ -1,0 +1,5 @@
+#chrom	start	end	center	pileup
+HG01123#2#CM089098.1	32514646	32628430	32578430	/mmfs1/gscratch/stergachislab/HPRC/fiber-seq-pilot/DSA-FIRE/results/HG01123_PS00971_PacBio/HG01123_PS00971_PacBio-fire-v0.1-pileup.bed.gz
+HG01123#1#CM089083.1	32600983	32717092	32667092	/mmfs1/gscratch/stergachislab/HPRC/fiber-seq-pilot/DSA-FIRE/results/HG01123_PS00971_PacBio/HG01123_PS00971_PacBio-fire-v0.1-pileup.bed.gz
+HG01258#2#JAGYYU020000010.1	32598045	32711844	32661844	/mmfs1/gscratch/stergachislab/HPRC/fiber-seq-pilot/DSA-FIRE/results/HG01258_PS00972_PacBio/HG01258_PS00972_PacBio-fire-v0.1-pileup.bed.gz
+HG01258#1#CM088113.1	32521128	32634912	32584912	/mmfs1/gscratch/stergachislab/HPRC/fiber-seq-pilot/DSA-FIRE/results/HG01258_PS00972_PacBio/HG01258_PS00972_PacBio-fire-v0.1-pileup.bed.gz
