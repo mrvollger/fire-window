@@ -61,6 +61,18 @@ Highlight_bed <- args$highlight_bed
 Highlight_color <- args$highlight_color
 
 manifest_df <- fread(Manifest)
+
+# Validate required columns exist
+required_cols <- c("#chrom", "start", "end", "pileup")
+missing_cols <- setdiff(required_cols, colnames(manifest_df))
+if (length(missing_cols) > 0) {
+    stop(sprintf(
+        "Error: Manifest file is missing required column(s): %s\nRequired columns are: %s",
+        paste(missing_cols, collapse = ", "),
+        paste(required_cols, collapse = ", ")
+    ))
+}
+
 # if strand is not in df set it to +
 if (!"strand" %in% colnames(manifest_df)) {
     manifest_df$strand <- "+"
