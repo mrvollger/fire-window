@@ -3,6 +3,6 @@
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
+PIXI=${SCRIPT_DIR}/../pixi.toml
 # Go up one level to project root and run with pixi
-cd "$SCRIPT_DIR/.." && pixi run fire-window "$@"
+pixi run --manifest-path ${PIXI} fire-window "$@"
