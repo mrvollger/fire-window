@@ -14,7 +14,7 @@ suppressPackageStartupMessages({
 })
 
 
-choose_font("Arial")
+choose_font("helvetica")
 
 
 # command line args
