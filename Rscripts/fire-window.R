@@ -10,7 +10,12 @@ suppressPackageStartupMessages({
     library(ggpubr)
     library(glue)
     library(cowplot)
+    library(extrafont)
 })
+
+
+choose_font("Arial")
+
 
 # command line args
 parser <- ArgumentParser(description = "Generate actuation plots from pileup files")
