@@ -264,5 +264,5 @@ center_pileups %>%
 ggsave(
     Output,
     width = Width,
-    height = Height_per_track * nlevels(center_pileups$region)
+    height = Height_per_track * nlevels(center_pileups$region),
 )
